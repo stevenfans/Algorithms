@@ -1,5 +1,4 @@
-
-
+package app;
 public class DoublyLinkedList{
 
     // create the starting point
@@ -26,6 +25,7 @@ public class DoublyLinkedList{
         this.list_size = 0; 
     }
     
+    //add a new node to the front of the list
     public void addinFront(String n) {
         //create a new node
         Node temp = new Node(n);
@@ -40,6 +40,7 @@ public class DoublyLinkedList{
         }
 
         head = temp; 
+        list_size++; 
     }
 
     //find the node that matches the data and remove it
@@ -72,9 +73,12 @@ public class DoublyLinkedList{
             startingHead= startingHead.next; 
             startingHead.prev = tmpRemoveNode; 
         }
+
+        list_size--;
        // System.out.println("Node Removed");
     }
 
+    //insert a new Node at the desired location 
     public static DoublyLinkedList insertNode(DoublyLinkedList list, int locationToReplace, String newData) {
 
         int i = 0; 
@@ -137,6 +141,18 @@ public class DoublyLinkedList{
 
     }
 
+    public Node getNodeAtElement(int element){
+        //get temp starting head
+        Node tmp = head; 
+
+        for(int i=0; i<=element; i++){
+            tmp = tmp.next;
+        }
+
+        return tmp ;
+    }
+    
+    //function prints the linked list all out
     public void printList(){
 
         Node n = head;
