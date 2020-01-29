@@ -4,9 +4,15 @@
 // //     3.  able to sort up to 20 words
 
 public class InsertionSort{
+
+    
     
     public static void main(String[]args){
 
+        char a = 'z'; 
+        int x = (int) a; 
+        System.out.println(x); 
+        
         // create an empty linked list
         DoublyLinkedList dll = new DoublyLinkedList(); 
         dll.addinFront("apple");
@@ -14,11 +20,8 @@ public class InsertionSort{
         dll.addinFront("going");
         dll.addinFront("zeebra");
         dll.addinFront("aardvark");
-        dll.removeNode("going");
-        dll.insertNodeBefore("test", "fuck");
+        dll.removeNode("test");
+        dll.insertNodeBefore("aardvark", "fuck");
         dll.printList(); 
-        //dll.insertNode(dll,3, "newData");
-        //dll.printList(dll.head);
-        //dll.insertNodeBefore(1, 3);
     }
 }

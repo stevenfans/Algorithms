@@ -53,12 +53,26 @@ public class DoublyLinkedList{
             startingHead = startingHead.next; 
         }
         // create a new node pointer to before the remove node location 
-        Node beforeRemoveNode = startingHead; 
-        beforeRemoveNode = beforeRemoveNode.prev;
-
-        beforeRemoveNode.next = startingHead.next; 
-        startingHead= startingHead.next; 
-        startingHead.prev = beforeRemoveNode; 
+        Node tmpRemoveNode = startingHead; 
+        
+        if(startingHead.next == null){
+            tmpRemoveNode = tmpRemoveNode.prev; 
+            tmpRemoveNode.next = null; 
+        }
+        else if(startingHead.prev==null){
+            // if at the beginning, must move the
+            tmpRemoveNode = tmpRemoveNode.next;
+            tmpRemoveNode.prev = null ;
+            head = tmpRemoveNode; 
+           // System.out.println("test");
+        }
+        else{
+            tmpRemoveNode = tmpRemoveNode.prev;
+            tmpRemoveNode.next = startingHead.next; 
+            startingHead= startingHead.next; 
+            startingHead.prev = tmpRemoveNode; 
+        }
+       // System.out.println("Node Removed");
     }
 
     public static DoublyLinkedList insertNode(DoublyLinkedList list, int locationToReplace, String newData) {
@@ -92,8 +106,6 @@ public class DoublyLinkedList{
     // in the linked list
     public void insertNodeBefore(String insertBeforeThisData , String newData){
 
-        //create a temporary list 
-        //DoublyLinkedList tmpList = list; 
         Node startingHead = head;
 
         //get the starting head to the location of the node to be moved
@@ -104,14 +116,24 @@ public class DoublyLinkedList{
         //create a Nod for the new data
         Node newNode = new Node(newData);
 
+        if(startingHead.prev == null){
+            newNode.prev = null; 
+            newNode.next = startingHead; 
+            startingHead.prev = newNode; 
+            head = newNode; 
+            // System.out.println("Enawfeawef");
+        }
+        else {
         //fix the pointers
-        newNode.prev = startingHead.prev; 
-        newNode.next = startingHead;
-        startingHead.prev = newNode; 
-        startingHead = startingHead.prev;
-        newNode = newNode.prev;
-       // startingHead = startingHead.prev; 
-        newNode.next = startingHead; 
+            newNode.prev = startingHead.prev; 
+            newNode.next = startingHead;
+            startingHead.prev = newNode; 
+            startingHead = startingHead.prev;
+            newNode = newNode.prev;
+        // startingHead = startingHead.prev; 
+            newNode.next = startingHead; 
+        }
+        System.out.println("End of isnert node before");
 
     }
 
