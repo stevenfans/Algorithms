@@ -80,7 +80,7 @@ public class InsertionSort{
                 // if at the beginning, must move the
                 tmpRemoveNode = tmpRemoveNode.next;
                 tmpRemoveNode.prev = null ;
-                head = tmpRemoveNode; 
+                head = tmpRemoveNode;  // reset the head 
             // System.out.println("test");
             }
             else{
@@ -157,6 +157,7 @@ public class InsertionSort{
             Node startingHead = head;
             Node targetNode = new Node(newData);  
 
+            //move head of the startingHead. prev is null
             while(startingHead.data != targetToAddBehind){
                 startingHead = startingHead.next;
             }
@@ -167,6 +168,7 @@ public class InsertionSort{
             if(targetNode.prev!=null){
                 targetNode.prev.next = targetNode;  
             } 
+            else{head = targetNode;}
 
             System.out.print("asdf");
         }
@@ -232,8 +234,8 @@ public class InsertionSort{
 
         for(int i=1; i<size;i++){
             //get second node pointer
-            // Node key = list.getNodeAtElement(i); 
-            Node key = tmpList.moveToNextNode(); // start off at the next indes
+            Node key = list.getNodeAtElement(i); 
+            //Node key = tmpList.moveToNextNode(); // start off at the next indes
             Node beforeKey = key.prev; 
             
             while(isBigger(beforeKey,key)){
@@ -261,10 +263,11 @@ public class InsertionSort{
         dll.addinFront("a");
         dll.addinFront("c");
         dll.addinFront("d");
+        // dll.removeNode("c");
         //dll.insertNodeBefore("aardvark", "fuck");
-      //  dll.printList(); 
-
         insertionSort(dll, dll.list_size);
+        dll.printList(); 
+
         // dll.removeNode("b");
         // dll.moveNodeBehind("c","b");
         System.out.println("fucking work bro");
