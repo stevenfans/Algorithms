@@ -24,17 +24,6 @@ public class InsertionSort{
         Node tail; 
         int  list_size; 
         
-        // node class
-        // class Node{
-        //     private String data; 
-        //     private Node next; 
-        //     private Node prev; 
-
-        //     //node constructor
-        //     Node(String animal){
-        //         data = animal; 
-        //     }
-        // }
 
         // constructor of linked list
         DoublyLinkedList(){
@@ -91,67 +80,66 @@ public class InsertionSort{
             }
 
             list_size--;
-        // System.out.println("Node Removed");
         }
         // insert a new node the location specified
-        public DoublyLinkedList insertNode(DoublyLinkedList list, int locationToReplace, String newData) {
+        // public DoublyLinkedList insertNode(DoublyLinkedList list, int locationToReplace, String newData) {
 
-            int i = 0; 
-            //create a dummy linked list
-            DoublyLinkedList tmpList = list; 
-            Node startingHead = list.head; 
-            //create a new empty node 
-            Node tmp = new Node(newData);
+        //     int i = 0; 
+        //     //create a dummy linked list
+        //     DoublyLinkedList tmpList = list; 
+        //     Node startingHead = list.head; 
+        //     //create a new empty node 
+        //     Node tmp = new Node(newData);
 
-            //traverse thru the list to the location of where you want to repalce it
-            while(i!=locationToReplace){
-                startingHead = startingHead.next;
-                i++; 
-            }
+        //     //traverse thru the list to the location of where you want to repalce it
+        //     while(i!=locationToReplace){
+        //         startingHead = startingHead.next;
+        //         i++; 
+        //     }
 
-            Node trail = startingHead; //trail is old location 
+        //     Node trail = startingHead; //trail is old location 
             
-            //traverse one more back
-            startingHead = startingHead.prev; 
-            startingHead.next = tmp; 
-            tmp.prev = startingHead; 
-            tmp.next = trail; 
-            trail.prev = tmp.next;
+        //     //traverse one more back
+        //     startingHead = startingHead.prev; 
+        //     startingHead.next = tmp; 
+        //     tmp.prev = startingHead; 
+        //     tmp.next = trail; 
+        //     trail.prev = tmp.next;
 
-            return tmpList;
-        }
+        //     return tmpList;
+        // }
         // function creates a Node for the new data and places behind a specified  
         // data in the linked list
-        public void insertNodeBefore(String insertBeforeThisData , String newData){
+        // public void insertNodeBefore(String insertBeforeThisData , String newData){
 
-            Node startingHead = head;
+        //     Node startingHead = head;
 
-            //get the starting head to the location of the node to be moved
-            while(startingHead.data != insertBeforeThisData){
-                startingHead = startingHead.next; 
-            }
-            //create a Nod for the new data
-            Node newNode = new Node(newData);
+        //     //get the starting head to the location of the node to be moved
+        //     while(startingHead.data != insertBeforeThisData){
+        //         startingHead = startingHead.next; 
+        //     }
+        //     //create a Nod for the new data
+        //     Node newNode = new Node(newData);
 
-            if(startingHead.prev == null){
-                newNode.prev = null; 
-                newNode.next = startingHead; 
-                startingHead.prev = newNode; 
-                head = newNode; 
-                // System.out.println("Enawfeawef");
-            }
-            else {
-            //fix the pointers
-                newNode.prev = startingHead.prev; 
-                newNode.next = startingHead;
-                startingHead.prev = newNode; 
-                startingHead = startingHead.prev;
-                newNode = newNode.prev;
-                newNode.next = startingHead; 
-            }
+        //     if(startingHead.prev == null){
+        //         newNode.prev = null; 
+        //         newNode.next = startingHead; 
+        //         startingHead.prev = newNode; 
+        //         head = newNode; 
+        //         // System.out.println("Enawfeawef");
+        //     }
+        //     else {
+        //     //fix the pointers
+        //         newNode.prev = startingHead.prev; 
+        //         newNode.next = startingHead;
+        //         startingHead.prev = newNode; 
+        //         startingHead = startingHead.prev;
+        //         newNode = newNode.prev;
+        //         newNode.next = startingHead; 
+        //     }
 
-            System.out.println("End of insert node before");
-        }
+        //     // System.out.println("End of insert node before");
+        // }
 
         public void moveNodeBehind(String targetToAddBehind, String newData){
             Node startingHead = head;
@@ -170,7 +158,7 @@ public class InsertionSort{
             } 
             else{head = targetNode;}
 
-            System.out.print("asdf");
+            // System.out.print("asdf");
         }
 
         //get the node specified element location 
@@ -181,7 +169,6 @@ public class InsertionSort{
             for(int i=0; i<element; i++){
                 tmp = tmp.next;
             }
-
             return tmp ;
         }
 
@@ -192,21 +179,24 @@ public class InsertionSort{
         }
         //print out every node in the linked list
         public void printList(){
-
             Node n = head;
             // check if the current node not null, print data
             while(n.data!=null){
-                System.out.println(n.data); 
+                System.out.printf("%s ",n.data); 
                 if(n.next!=null)n = n.next; // check if the next point is null
                 else break; 
             }
+            System.out.println();
         }
     }
-//==========================================================
+//==============================================================================
 
+    //function takes in node and read char index of string to return a  number
     public static int getNum(Node n, int charIndex){
+        if(charIndex>n.data.length()-1){
+            charIndex=n.data.length()-1;
+        }
         int asciiNumber = (int) n.data.charAt(charIndex);
-
         return asciiNumber; 
     }
 
@@ -230,7 +220,7 @@ public class InsertionSort{
     public static void insertionSort(DoublyLinkedList list, int size){
         
         DoublyLinkedList tmpList = list;
-        DoublyLinkedList origList = list; 
+        // DoublyLinkedList origList = list; 
 
         for(int i=1; i<size;i++){
             //get second node pointer
@@ -241,35 +231,30 @@ public class InsertionSort{
             while(isBigger(beforeKey,key)){
                 tmpList.removeNode(key.data);
                 tmpList.moveNodeBehind(beforeKey.data, key.data);
-                System.out.println('y');
+                // System.out.println('y');
                 if(beforeKey.prev!=null)beforeKey = beforeKey.prev.prev;
-                System.out.print("x");
+                // System.out.print("x");
             }
         }
-        System.out.println("asdfjkl;asdf");
+       // System.out.println("asdfjkl;asdf");
     }
     
     public static void main(String[]args){
-        
+
         // create an empty linked list
         DoublyLinkedList dll = new InsertionSort(). new DoublyLinkedList(); 
-        // dll.addinFront("apple");
-        // dll.addinFront("test");
-        // dll.addinFront("going");
-        // dll.addinFront("zeebra");
-        // dll.addinFront("aardvark");
-        dll.addinFront("b");
-        dll.addinFront("e");
-        dll.addinFront("a");
-        dll.addinFront("c");
-        dll.addinFront("d");
-        // dll.removeNode("c");
-        //dll.insertNodeBefore("aardvark", "fuck");
+        
+      //  String[] tstArry = new String[]{"java", "asdf", "bear", "yum"};
+        int arrLength = args.length; 
+        
+        for(int i=0; i<arrLength; i++){
+            dll.addinFront(args[i]);
+        }
+
+
         insertionSort(dll, dll.list_size);
         dll.printList(); 
 
-        // dll.removeNode("b");
-        // dll.moveNodeBehind("c","b");
-        System.out.println("fucking work bro");
+
     }
 }                 
