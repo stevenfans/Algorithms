@@ -1,3 +1,6 @@
+// Steven Phan 
+// Dennis Vivanco
+// Abigail Kwan
 package app;
 // Write an insertion sort algorithm wth: 
 //     1.  using doubly linked list
@@ -81,65 +84,6 @@ public class InsertionSort{
 
             list_size--;
         }
-        // insert a new node the location specified
-        // public DoublyLinkedList insertNode(DoublyLinkedList list, int locationToReplace, String newData) {
-
-        //     int i = 0; 
-        //     //create a dummy linked list
-        //     DoublyLinkedList tmpList = list; 
-        //     Node startingHead = list.head; 
-        //     //create a new empty node 
-        //     Node tmp = new Node(newData);
-
-        //     //traverse thru the list to the location of where you want to repalce it
-        //     while(i!=locationToReplace){
-        //         startingHead = startingHead.next;
-        //         i++; 
-        //     }
-
-        //     Node trail = startingHead; //trail is old location 
-            
-        //     //traverse one more back
-        //     startingHead = startingHead.prev; 
-        //     startingHead.next = tmp; 
-        //     tmp.prev = startingHead; 
-        //     tmp.next = trail; 
-        //     trail.prev = tmp.next;
-
-        //     return tmpList;
-        // }
-        // function creates a Node for the new data and places behind a specified  
-        // data in the linked list
-        // public void insertNodeBefore(String insertBeforeThisData , String newData){
-
-        //     Node startingHead = head;
-
-        //     //get the starting head to the location of the node to be moved
-        //     while(startingHead.data != insertBeforeThisData){
-        //         startingHead = startingHead.next; 
-        //     }
-        //     //create a Nod for the new data
-        //     Node newNode = new Node(newData);
-
-        //     if(startingHead.prev == null){
-        //         newNode.prev = null; 
-        //         newNode.next = startingHead; 
-        //         startingHead.prev = newNode; 
-        //         head = newNode; 
-        //         // System.out.println("Enawfeawef");
-        //     }
-        //     else {
-        //     //fix the pointers
-        //         newNode.prev = startingHead.prev; 
-        //         newNode.next = startingHead;
-        //         startingHead.prev = newNode; 
-        //         startingHead = startingHead.prev;
-        //         newNode = newNode.prev;
-        //         newNode.next = startingHead; 
-        //     }
-
-        //     // System.out.println("End of insert node before");
-        // }
 
         public void moveNodeBehind(String targetToAddBehind, String newData){
             Node startingHead = head;
@@ -153,12 +97,13 @@ public class InsertionSort{
             targetNode.prev = startingHead.prev;
             startingHead.prev = targetNode;
             targetNode.next = startingHead; 
+
+            //check for null nodes
             if(targetNode.prev!=null){
                 targetNode.prev.next = targetNode;  
             } 
             else{head = targetNode;}
 
-            // System.out.print("asdf");
         }
 
         //get the node specified element location 
@@ -193,6 +138,7 @@ public class InsertionSort{
 
     //function takes in node and read char index of string to return a  number
     public static int getNum(Node n, int charIndex){
+        //get a letter and turn it into ascii number
         if(charIndex>n.data.length()-1){
             charIndex=n.data.length()-1;
         }
@@ -202,7 +148,7 @@ public class InsertionSort{
 
     public static boolean isBigger(Node leftNode, Node rightNode){
         boolean isBigger = false;
-        
+        //smaller ascii number means word should be in front
         if(leftNode!=null&&rightNode!=null){
             for(int i=0; i<(leftNode.data.length()|rightNode.data.length()); i++){
                 if(getNum(leftNode,i)>getNum(rightNode,i)){
@@ -220,14 +166,13 @@ public class InsertionSort{
     public static void insertionSort(DoublyLinkedList list, int size){
         
         DoublyLinkedList tmpList = list;
-        // DoublyLinkedList origList = list; 
 
         for(int i=1; i<size;i++){
             //get second node pointer
             Node key = list.getNodeAtElement(i); 
             //Node key = tmpList.moveToNextNode(); // start off at the next indes
             Node beforeKey = key.prev; 
-            
+            //check key and previous element data
             while(isBigger(beforeKey,key)){
                 tmpList.removeNode(key.data);
                 tmpList.moveNodeBehind(beforeKey.data, key.data);
@@ -236,7 +181,7 @@ public class InsertionSort{
                 // System.out.print("x");
             }
         }
-       // System.out.println("asdfjkl;asdf");
+
     }
     
     public static void main(String[]args){
@@ -246,15 +191,15 @@ public class InsertionSort{
         
       //  String[] tstArry = new String[]{"java", "asdf", "bear", "yum"};
         int arrLength = args.length; 
-        
+       
+        //put the items in the array into a doubly linked list
         for(int i=0; i<arrLength; i++){
             dll.addinFront(args[i]);
         }
-
-
+        //sort the linked list
         insertionSort(dll, dll.list_size);
+
+        //print the linked list
         dll.printList(); 
-
-
     }
 }                 
