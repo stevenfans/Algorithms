@@ -23,22 +23,21 @@ public class MergeSort{
         return 0;
     }
 
-    public static int[] merge(int[] A, int left, int middle, int right){
+    public static void merge(int[] A, int left, int middle, int right){
         System.out.println("Testing merge");
         System.out.println("LEFT: "+A[left]);
         System.out.println("MID: "+A[middle]);
         System.out.println("RIGHT: "+A[right]);
 
-        // does merge want to return an array??? 
         // create left and right arrays
         int [] retArr;
-        int [] leftArr; 
-        int [] rightArr; 
+        int [] leftArr= new int[9]; 
+        int [] rightArr= new int[9]; 
+        int test = leftArr.length;
         leftArr[leftArr.length]= left; 
         rightArr[rightArr.length] = right; 
 
 
-        return retArr;
 
     }
 
