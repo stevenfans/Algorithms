@@ -1,25 +1,20 @@
+// Steven Phan
+// Dennis Vivanco
+// Abigail Kwan
 package app;
 
 public class MergeSort{
 
-    static int compCnt = 0;
+    static int compCnt = 0;//counter for the merge comparisons
 
-    public static int mergeSort(int[] A, int left, int right) {
+    public static void mergeSort(int[] A, int left, int right) {
 
-        int arrLen = A.length;
-
-        // check if the length of the array is one and return it since its the
-        // last one
-        // if (arrLen <= 1) {
-        //     return A[0];
         if (left < right) {
             int middle = (left + right) / 2;
-            // System.out.println("The middle element is: " + A[middle]);
             mergeSort(A, left, middle);
             mergeSort(A, middle + 1, right);
             merge(A, left, middle, right);
         }
-        return 0;
     }
 
     public static void merge(int[] A, int left, int middle, int right) {
@@ -48,23 +43,22 @@ public class MergeSort{
             rightArr[i] = A[i + (mid + 1)];
         }
 
-        int leftElem = 0;
-        int rightElem = 0;
-        int mergeElem = 0;
-        // compare and put the higher int on the left
-        while (leftElem != leftArrSize && rightElem != rightArrSize) {
+        // index counters
+        int leftElem = 0; int rightElem = 0; int mergeElem = 0;
+
+        // compare elements from left and right array 
+        while (leftElem != leftArrSize && rightElem != rightArrSize) { // exit if left|right max reached
+            // put left element into merged array if the right is bigger
             if (leftArr[leftElem] <= rightArr[rightElem]) {
-                mergedArr[mergeElem++] = leftArr[leftElem];
-                if(leftElem<leftArrSize){leftElem++;}
+                mergedArr[mergeElem++] = leftArr[leftElem++];
+                // if(leftElem<leftArrSize){leftElem++;}
             } else {
-                mergedArr[mergeElem++] = rightArr[rightElem];
-                if(rightElem<rightArrSize){rightElem++;}
-            }
-            compCnt++;
+                mergedArr[mergeElem++] = rightArr[rightElem++];
+                // if(rightElem<rightArrSize){rightElem++;}
+            } compCnt++;
         }
 
-        // if(leftArrSizeleftElem){compCnt++;}
-
+        // place in the merged array left over values
         while(leftElem<leftArrSize || rightElem<rightArrSize){
             if(leftElem<=rightElem){
                 mergedArr[mergeElem++]=leftArr[leftElem];
@@ -75,8 +69,6 @@ public class MergeSort{
                 if(rightElem<rightArrSize){rightElem++;}
             }
         }
-        
-
         // update the main Array with the sorted values
         for(int i=0; i<arrSize;i++){
             A[i+left] = mergedArr[i];
@@ -86,16 +78,16 @@ public class MergeSort{
 
     public static void main(String [] args){
 
-        int []testArr = {1,2,1};
-        // int [] testArr = new int [args.length];
-        int start = 0; int end = testArr.length-1;
+        // int []testArr = {1,2,1};
+        int [] testArr = new int [args.length];
+        int start = 0; int end = args.length-1;
         // TODO: need to fix the string arguments
         // for now get string args array and turn it 
         // into a int array
 
-        // for(int i=0; i<args.length;i++){
-        //     testArr[i] = Integer.parseInt(args[i]);
-        // }
+        for(int i=0; i<args.length;i++){
+            testArr[i] = Integer.parseInt(args[i]);
+        }
         
         System.out.println("Unsorted Array");
         for(int element:testArr){
