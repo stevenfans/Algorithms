@@ -10,11 +10,11 @@ public class MergeSort{
 
         // check if the length of the array is one and return it since its the
         // last one
-        if (arrLen <= 1) {
-            return A[0];
-        } else if (left < right) {
+        // if (arrLen <= 1) {
+        //     return A[0];
+        if (left < right) {
             int middle = (left + right) / 2;
-            System.out.println("The middle element is: " + A[middle]);
+            // System.out.println("The middle element is: " + A[middle]);
             mergeSort(A, left, middle);
             mergeSort(A, middle + 1, right);
             merge(A, left, middle, right);
@@ -51,8 +51,9 @@ public class MergeSort{
         int leftElem = 0;
         int rightElem = 0;
         int mergeElem = 0;
+        // compare and put the higher int on the left
         while (leftElem != leftArrSize && rightElem != rightArrSize) {
-            if (leftArr[leftElem] < rightArr[rightElem]) {
+            if (leftArr[leftElem] <= rightArr[rightElem]) {
                 mergedArr[mergeElem++] = leftArr[leftElem];
                 if(leftElem<leftArrSize){leftElem++;}
             } else {
@@ -61,7 +62,9 @@ public class MergeSort{
             }
             compCnt++;
         }
-        
+
+        // if(leftArrSizeleftElem){compCnt++;}
+
         while(leftElem<leftArrSize || rightElem<rightArrSize){
             if(leftElem<=rightElem){
                 mergedArr[mergeElem++]=leftArr[leftElem];
@@ -73,25 +76,42 @@ public class MergeSort{
             }
         }
         
+
         // update the main Array with the sorted values
         for(int i=0; i<arrSize;i++){
             A[i+left] = mergedArr[i];
         }
-        System.out.println("test");
+        // System.out.println("test");
     }
 
-    public static void main(String[]args){
+    public static void main(String [] args){
 
-        int []testArr = {4,5,1,7,3,3,8};
+        int []testArr = {1,2,1};
+        // int [] testArr = new int [args.length];
         int start = 0; int end = testArr.length-1;
+        // TODO: need to fix the string arguments
+        // for now get string args array and turn it 
+        // into a int array
+
+        // for(int i=0; i<args.length;i++){
+        //     testArr[i] = Integer.parseInt(args[i]);
+        // }
         
+        System.out.println("Unsorted Array");
+        for(int element:testArr){
+            System.out.print(element + " ");
+        }        
+        System.out.println("\n");
+
         mergeSort(testArr, start, end);
 
+        System.out.println("Sorted Array");
         for(int element:testArr){
-            System.out.println(element);
+            System.out.print(element+" ");
         }
-        System.out.println(compCnt);
-        System.out.println("Hello World");
+        System.out.println("\n");
+
+        System.out.println("Number of comparisons: "+compCnt);
     }
 }
         
