@@ -1,3 +1,7 @@
+// Abigail Kwan
+// Dennis Vivanco
+// Steven Phan
+
 package app; 
 import java.lang.Math;
 import java.util.Arrays;
@@ -28,12 +32,11 @@ public class BuildMaxHeap{
             A[largest] = tmp;
             max_heapify(A, largest);
         }
-        System.out.println("end of max heapify");
     }
 
     public static void build_max_heap(int[] A){
-        // int heapSize = A.length;
-
+        int heapSize = A.length;
+        
         // TODO: find a better way to fix this problem, but there could a chance
         //       where there is no data on the right child. To compensate
         //       insert a null at the end of the array
@@ -48,7 +51,13 @@ public class BuildMaxHeap{
         // decrease array back to normal
         A = Arrays.copyOf(A, A.length-1);
 
-       print_array(A); 
+        // determine the height: 2^(h+1) - 1
+        int height = (int) (Math.log(heapSize+1)/Math.log(2))-1; 
+
+        System.out.println("Max Heap Array: ");
+        print_array(A); 
+
+        System.out.println("\nHeight: " + height);
     }
 
     public static void print_array(int[]A){
@@ -58,12 +67,15 @@ public class BuildMaxHeap{
     }
 
     public static void main(String[] args){
-        // int[] testArr = {4,5,1,7,3,3,8};
-        // int[] testArr = {16,4,10,14,1,9,3,2,8,7};
-        // int[] testArr = {4,1,3,2,16,9,10,14,8,7};
         int [] testArr = {4,5,1,7,3,3,8};
 
-        // max_heapify(testArr, 4);
-        build_max_heap(testArr);
+        // build_max_heap(testArr);
+        int [] int_array = new int[args.length];
+        // convert args string to ints in A
+        
+        for (int i=0; i<args.length;i++){
+            int_array[i] = Integer.parseInt(args[i]);
+        }
+        build_max_heap(int_array);
     }
 }
