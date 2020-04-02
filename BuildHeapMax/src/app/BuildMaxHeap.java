@@ -71,11 +71,12 @@ public class BuildMaxHeap{
 
         // build_max_heap(testArr);
         int [] int_array = new int[args.length];
+
         // convert args string to ints in A
         
         for (int i=0; i<args.length;i++){
             int_array[i] = Integer.parseInt(args[i]);
         }
-        build_max_heap(int_array);
+        build_max_heap(testArr);
     }
 }
