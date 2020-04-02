@@ -1,7 +1,14 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class MaxPriorityQueue {
+
+    // class Heap{
+    //     int[] S;
+    // }
+    int [] S;
+    int x; //insert 
 
     // ============= BUILD MAX HEAP METHODS==========================
     public static void max_heapify(int[] A, int i){
@@ -47,10 +54,10 @@ public class MaxPriorityQueue {
         // determine the height: 2^(h+1) - 1
         int height = (int) (Math.log(heapSize+1)/Math.log(2))-1; 
 
-        System.out.println("Max Heap Array: ");
+        System.out.print("Outputted Max Heap: ");
         print_array(A); 
 
-        System.out.println("\nHeight: " + height);
+        // System.out.println("\nHeight: " + height);
     }
 
     public static void print_array(int[]A){
@@ -61,8 +68,13 @@ public class MaxPriorityQueue {
     // =================================================================
 
 
-    public static void Insert(int[]S,int x){
-        ;
+    public static int[] Insert(int[]S,int x){
+        
+        int [] new_S; 
+        new_S = Arrays.copyOf(S, S.length+1); 
+        new_S[S.length] = x; 
+
+        return new_S;
     }
 
     public static void Maximum(int[]S){
@@ -77,7 +89,41 @@ public class MaxPriorityQueue {
         ;
     }
 
-    public static void 
+    public static int[] executeOption(int[]S, int option){
+
+        MaxPriorityQueue heap = new MaxPriorityQueue(); 
+        Scanner input = new Scanner(System.in);
+        int [] new_S={0}; 
+
+        switch(option){
+            case 1: 
+                System.out.println("\nInsert\n");
+                // create scanner object for the integer to input
+                System.out.print("Input the integer you want inserted: ");
+                int x = input.nextInt();
+                new_S = Insert(S, x);
+                // break;
+            case 2:
+                System.out.println("\nMaximum\n");
+                break;
+            case 3:
+                System.out.println("\nExtract-Max\n");
+                break;
+            case 4: 
+                System.out.println("\nIncrease-key\n");
+                break;
+            case 5:
+                System.out.println("\nExit\n");
+                break;
+            default:
+                System.out.println("\nPlease Enter a Valid Option\n");
+                // break;
+                int [] t = {0};
+                new_S = t;
+                return new_S;
+        } 
+        return new_S;
+    } 
     
     public static void main(String [] args){
 
@@ -86,8 +132,16 @@ public class MaxPriorityQueue {
         Scanner user_input = new Scanner(System.in); // Create a Scanner Obj for user input 
         int option = 0;  
 
+        // Heap heap = new MaxPriorityQueue(). new Heap();
+        // heap.S = testArr;
+        MaxPriorityQueue heap = new MaxPriorityQueue();
+        heap.S = testArr;
+
         while(option!=5){
-            System.out.println("Choose from the following options:\n");
+
+            build_max_heap(heap.S);
+
+            System.out.println("\nChoose from the following options:\n");
             System.out.println("1. Insert");
             System.out.println("2. Maximum");
             System.out.println("3. Extract-Max");
@@ -96,6 +150,8 @@ public class MaxPriorityQueue {
             
             // get the user input
             option = user_input.nextInt();
+
+            heap.S = executeOption(heap.S,option);
         }
 
         user_input.close(); // close the scanner
