@@ -72,9 +72,13 @@ public class MaxPriorityQueue {
     // =================================================================
 
     public void Insert(int[]S,int x){
+        double inf = Double.NEGATIVE_INFINITY; 
+        
         node = Arrays.copyOf(S,S.length+1);
-        node[node.length-1] = x;  
-        // System.out.print("STOP"); 
+        // node[node.length-1] = x;  
+        node[node.length-1] = (int) inf; 
+        IncreaseKey(node,node.length,x); 
+        
     }
 
     public int Maximum(int[]S){
@@ -97,14 +101,19 @@ public class MaxPriorityQueue {
     }
 
     public  void IncreaseKey(int[]S,int x,int k){
+        x--; 
+
         if (k<S[x]){
             System.out.println("new key is smaller than current key");
         }
         else{
-            S[x-1] = k; 
+            int tmp;
+            S[x] = k; 
             int parent = getParent(S, x);
             while((x>1) && (S[parent] < S[x])){
+                tmp = S[x]; 
                 S[x] = S[parent]; 
+                S[parent] = tmp;
                 x = parent; 
             }
         }
@@ -156,7 +165,6 @@ public class MaxPriorityQueue {
                 break;
         } 
 
-        // input.close(); //close scanner
         return heap;
     } 
     
