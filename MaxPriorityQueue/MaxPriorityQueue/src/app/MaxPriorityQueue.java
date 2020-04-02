@@ -104,7 +104,7 @@ public class MaxPriorityQueue {
         x--; 
 
         if (k<S[x]){
-            System.out.println("new key is smaller than current key");
+            System.out.println("ERROR: new key is smaller than current key");
         }
         else{
             int tmp;
@@ -148,6 +148,7 @@ public class MaxPriorityQueue {
                 max = heap.ExtractMax(heap.node);
                 System.out.print("Maximum value is: ");
                 System.out.print(max);
+                System.out.println(); 
                 break;
             case 4: 
                 System.out.println("\nIncrease-key\n");
