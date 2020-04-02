@@ -52,7 +52,7 @@ public class MaxPriorityQueue {
         // determine the height: 2^(h+1) - 1
         // int height = (int) (Math.log(heapSize+1)/Math.log(2))-1;
 
-        System.out.print("Outputted Max Heap: ");
+        System.out.print("\nOutputted Max Heap: ");
         print_array(A);
         return A;
         // System.out.println("\nHeight: " + height);
@@ -62,6 +62,12 @@ public class MaxPriorityQueue {
         for (int element : A) {
             System.out.print(element + "  ");
         }
+        System.out.println();
+    }
+
+    public static int getParent(int[] S, int i){
+        int parent = Math.floorDiv(i, 2);
+        return parent;
     }
     // =================================================================
 
@@ -84,14 +90,24 @@ public class MaxPriorityQueue {
         else{
             max = S[0]; 
             S[0] = S[S.length-1]; 
-            node = Arrays.copyOf(S,S.length-2); 
+            node = Arrays.copyOf(S,S.length-1); 
             max_heapify(node, 1);
         }
         return max; 
     }
 
-    public static void IncreaseKey(int[]S,int x,int k){
-        ;
+    public  void IncreaseKey(int[]S,int x,int k){
+        if (k<S[x]){
+            System.out.println("new key is smaller than current key");
+        }
+        else{
+            S[x-1] = k; 
+            int parent = getParent(S, x);
+            while((x>1) && (S[parent] < S[x])){
+                S[x] = S[parent]; 
+                x = parent; 
+            }
+        }
     }
 
     // public static int[] executeOption(int[]S, int option){
@@ -120,24 +136,27 @@ public class MaxPriorityQueue {
                 break;
             case 3:
                 System.out.println("\nExtract-Max\n");
-                heap.ExtractMax(heap.node);
+                max = heap.ExtractMax(heap.node);
+                System.out.print("Maximum value is: ");
+                System.out.print(max);
                 break;
             case 4: 
                 System.out.println("\nIncrease-key\n");
+                System.out.println("Input the index of the node you want to increase"); 
+                int index = input.nextInt(); 
+                System.out.println("Input the new value");
+                int newValue = input.nextInt(); 
+                heap.IncreaseKey(heap.node, index, newValue);
                 break;
             case 5:
                 System.out.println("\nExit\n");
                 break;
             default:
                 System.out.println("\nPlease Enter a Valid Option\n");
-                // break;
-                int [] t = {0};
-                // new_S = t;
-
+                break;
         } 
 
         // input.close(); //close scanner
-
         return heap;
     } 
     
