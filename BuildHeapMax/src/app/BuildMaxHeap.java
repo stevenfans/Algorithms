@@ -77,6 +77,7 @@ public class BuildMaxHeap{
         for (int i=0; i<args.length;i++){
             int_array[i] = Integer.parseInt(args[i]);
         }
+        
         build_max_heap(testArr);
     }
 }
