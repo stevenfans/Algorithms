@@ -99,7 +99,6 @@ public class MaxPriorityQueue {
     }
 
     public void IncreaseKey(int[]S,int x,int k){
-
         x--; 
 
         if (x < S.length){
@@ -110,7 +109,7 @@ public class MaxPriorityQueue {
                 int tmp;
                 S[x] = k; 
                 int parent = getParent(S, x);
-                while((x>1) && (S[parent] < S[x])){
+                while((x>0) && (S[parent] < S[x])){
                     tmp = S[x]; 
                     S[x] = S[parent]; 
                     S[parent] = tmp;
