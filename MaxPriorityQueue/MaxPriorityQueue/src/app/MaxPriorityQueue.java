@@ -114,6 +114,7 @@ public class MaxPriorityQueue {
                     S[x] = S[parent]; 
                     S[parent] = tmp;
                     x = parent;
+                    parent = getParent(S, x);
                 }
                 System.out.print("\nOutputted Max Heap: ");
                 print_array(S);
@@ -137,7 +138,7 @@ public class MaxPriorityQueue {
                 System.out.print("\nInput the integer you want inserted: ");
                 int x = input.nextInt();
                 heap.Insert(heap.node, x);
-                heap.node = build_max_heap(heap.node);
+                // heap.node = build_max_heap(heap.node);
                 break;
             case 2:
                 // System.out.println("\nMaximum\n");
