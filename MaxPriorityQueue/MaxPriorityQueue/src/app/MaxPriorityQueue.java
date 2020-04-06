@@ -76,7 +76,7 @@ public class MaxPriorityQueue {
         double inf = Double.NEGATIVE_INFINITY; 
         node = Arrays.copyOf(S,S.length+1);  
         node[node.length-1] = (int) inf; 
-        IncreaseKey(node,node.length,x); 
+        IncreaseKey(node,node.length-1,x); 
     }
 
     public int Maximum(int[]S){
@@ -99,8 +99,7 @@ public class MaxPriorityQueue {
     }
 
     public void IncreaseKey(int[]S,int x,int k){
-        x--; 
-
+        // x--; 
         if (x < S.length){
             if (k<S[x]){
                 System.out.println("\nERROR: new key is smaller than current key");
@@ -176,7 +175,7 @@ public class MaxPriorityQueue {
     
     public static void main(String [] args){
 
-        int [] testArr = {5,10,8,13,2,17,12};
+        // int [] testArr = {5,10,8,13,2,17,12};
 
         int option = 0;  
 
