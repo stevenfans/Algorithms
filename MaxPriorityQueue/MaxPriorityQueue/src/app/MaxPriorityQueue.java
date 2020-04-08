@@ -56,7 +56,6 @@ public class MaxPriorityQueue {
         System.out.print("\nOutputted Max Heap: ");
         print_array(A);
         return A;
-        // System.out.println("\nHeight: " + height);
     }
 
     public static void print_array(int[] A) {
@@ -127,7 +126,6 @@ public class MaxPriorityQueue {
     // public static int[] executeOption(int[]S, int option){
     public static MaxPriorityQueue executeOption(MaxPriorityQueue heap, int option){
 
-        // MaxPriorityQueue heap = new MaxPriorityQueue(); 
         Scanner input = new Scanner(System.in);
 
         switch(option){
@@ -137,17 +135,14 @@ public class MaxPriorityQueue {
                 System.out.print("\nInput the integer you want inserted: ");
                 int x = input.nextInt();
                 heap.Insert(heap.node, x);
-                // heap.node = build_max_heap(heap.node);
                 break;
             case 2:
                 // System.out.println("\nMaximum\n");
-                // int max = Maximum(heap.S);
                 int max = heap.Maximum(heap.node);
                 System.out.print("\nMaximum value is: ");
                 System.out.println(max);
                 break;
             case 3:
-                // System.out.println("\nExtract-Max\n");
                 max = heap.ExtractMax(heap.node);
                 System.out.print("\nMaximum value is: ");
                 System.out.print(max);
@@ -155,7 +150,6 @@ public class MaxPriorityQueue {
                 heap.node = build_max_heap(heap.node);
                 break;
             case 4: 
-                // System.out.println("\nIncrease-key\n");
                 System.out.print("\nInput the index of the node you want to increase: "); 
                 int index = input.nextInt(); 
                 System.out.print("\nInput the new value: ");
@@ -175,13 +169,10 @@ public class MaxPriorityQueue {
     
     public static void main(String [] args){
 
-        // int [] testArr = {5,10,8,13,2,17,12};
-
         int option = 0;  
 
         // Create HEAP Object
         MaxPriorityQueue heap = new MaxPriorityQueue();
-        // heap.node = testArr;
 
         Scanner user_input = new Scanner(System.in); // Create a Scanner Obj for user input 
         
