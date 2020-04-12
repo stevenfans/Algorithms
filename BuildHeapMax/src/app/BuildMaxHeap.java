@@ -67,7 +67,7 @@ public class BuildMaxHeap{
     }
 
     public static void main(String[] args){
-        int [] testArr = {4,5,1,7,3,3,8};
+        // int [] testArr = {4,5,1,7,3,3,8};
 
         // build_max_heap(testArr);
         int [] int_array = new int[args.length];
@@ -78,6 +78,6 @@ public class BuildMaxHeap{
             int_array[i] = Integer.parseInt(args[i]);
         }
         
-        build_max_heap(testArr);
+        build_max_heap(int_array);
     }
 }
