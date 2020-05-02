@@ -1,4 +1,8 @@
-package app; 
+/*
+    Steven Phan
+    Dennis Vivanco
+    Abigail Kwan
+*/
 // import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -56,6 +60,7 @@ public class MaxPriorityQueue {
         System.out.print("\nOutputted Max Heap: ");
         print_array(A);
         return A;
+        // System.out.println("\nHeight: " + height);
     }
 
     public static void print_array(int[] A) {
@@ -105,8 +110,9 @@ public class MaxPriorityQueue {
             }
             else{
                 int tmp;
-                S[x] = k; 
+                S[x] = k; //node 2
                 int parent = getParent(S, x);
+
                 while((x>0) && (S[parent] < S[x])){
                     tmp = S[x]; 
                     S[x] = S[parent]; 
@@ -123,9 +129,39 @@ public class MaxPriorityQueue {
         }
     }
 
+    public void IncreaseKey1(int[]S,int x,int k){
+        // x--; 
+        if (x < S.length){
+            if (k<S[x-1]){
+                System.out.println("\nERROR: new key is smaller than current key");
+            }
+            else{
+                int tmp;
+                S[x-1] = k; //node 2
+                int parent = getParent(S, x-1);
+                parent = parent - 1; 
+
+                while((x-1>0) && (S[parent] < S[x-1])){
+                    tmp = S[x-1]; 
+                    S[x-1] = S[parent]; 
+                    S[parent] = tmp;
+                    x = parent;
+                    parent = getParent(S, x-1);
+                    parent = parent - 1; 
+                }
+                System.out.print("\nOutputted Max Heap: ");
+                print_array(S);
+            }
+        }
+        else {
+            System.out.println("\n The node you want to increase is out of range");
+        }
+    }
+
     // public static int[] executeOption(int[]S, int option){
     public static MaxPriorityQueue executeOption(MaxPriorityQueue heap, int option){
 
+        // MaxPriorityQueue heap = new MaxPriorityQueue(); 
         Scanner input = new Scanner(System.in);
 
         switch(option){
@@ -135,14 +171,17 @@ public class MaxPriorityQueue {
                 System.out.print("\nInput the integer you want inserted: ");
                 int x = input.nextInt();
                 heap.Insert(heap.node, x);
+                // heap.node = build_max_heap(heap.node);
                 break;
             case 2:
                 // System.out.println("\nMaximum\n");
+                // int max = Maximum(heap.S);
                 int max = heap.Maximum(heap.node);
                 System.out.print("\nMaximum value is: ");
                 System.out.println(max);
                 break;
             case 3:
+                // System.out.println("\nExtract-Max\n");
                 max = heap.ExtractMax(heap.node);
                 System.out.print("\nMaximum value is: ");
                 System.out.print(max);
@@ -150,11 +189,12 @@ public class MaxPriorityQueue {
                 heap.node = build_max_heap(heap.node);
                 break;
             case 4: 
+                // System.out.println("\nIncrease-key\n");
                 System.out.print("\nInput the index of the node you want to increase: "); 
                 int index = input.nextInt(); 
                 System.out.print("\nInput the new value: ");
                 int newValue = input.nextInt(); 
-                heap.IncreaseKey(heap.node, index, newValue);
+                heap.IncreaseKey1(heap.node, index, newValue);
                 break;
             case 5:
                 System.out.println("\nExit\n");
@@ -163,16 +203,19 @@ public class MaxPriorityQueue {
                 System.out.println("\nPlease Enter a Valid Option\n");
                 break;
         } 
-
+        //input.close();
         return heap;
     } 
-    
+
     public static void main(String [] args){
+
+        // int [] testArr = {5,10,8,13,2,17,12};
 
         int option = 0;  
 
         // Create HEAP Object
         MaxPriorityQueue heap = new MaxPriorityQueue();
+        // heap.node = testArr;
 
         Scanner user_input = new Scanner(System.in); // Create a Scanner Obj for user input 
         
@@ -204,7 +247,8 @@ public class MaxPriorityQueue {
             option = user_input.nextInt();
             executeOption(heap,option);
         }
-
-        user_input.close(); // close the scanner
+        //user_input.close();
+         // close the scanner
     }
+    
 }
